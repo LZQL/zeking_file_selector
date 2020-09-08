@@ -58,7 +58,7 @@ public class ZekingFileSelectorPlugin implements FlutterPlugin, MethodCallHandle
 //    }
     if (call.method.equals("getFile")) {
 
-      Log.d("安卓端接收参数：",call.arguments.toString());
+//      Log.d("安卓端接收参数：",call.arguments.toString());
 
       // 接收的参数
       List<String> type = call.argument("type");
