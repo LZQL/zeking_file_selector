@@ -1,8 +1,7 @@
 name: zeking_file_selector
-description: A new flutter plugin project.
-version: 0.0.1
-author:
-homepage:
+description: 根据文件后缀 获取 文件，只支持Android。如果要支持IOS请使用插件 file_picker
+version: 0.0.2
+homepage: https://github.com/LZQL/zeking_file_selector
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 
-import 'FileUtilModel.dart';
+import 'zeking_file_util_model.dart';
+export 'zeking_file_util_model.dart';
 
 class ZekingFileSelector {
   static const MethodChannel _channel =
@@ -14,10 +15,10 @@ class ZekingFileSelector {
 //    return version;
 //  }
 
-  static List<FileModelUtil> list = [];
+  static List<ZekingFileUtilModel> list = [];
 
   // 调用原生 得到文件+文件信息
-  static Future<List<FileModelUtil>> getFilesAndroid(
+  static Future<List<ZekingFileUtilModel>> getFilesAndroid(
       List<String> fileTypeEnd) async {
 
 
@@ -34,7 +35,7 @@ class ZekingFileSelector {
     }
     list.clear();
     listFileStr.forEach((f) {
-      list.add(FileModelUtil(
+      list.add(ZekingFileUtilModel(
         fileDate: f["fileDate"],
         fileName: f["fileName"],
         filePath: f["filePath"],

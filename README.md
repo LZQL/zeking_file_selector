@@ -1,3 +1,4 @@
 # zeking_file_selector
 
-文件选择器，可以根据你设定的 文件后缀来读取手机文件
+根据文件后缀 获取 文件，只支持Android。
+如果要支持IOS请使用插件 file_picker

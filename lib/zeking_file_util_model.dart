@@ -1,13 +1,13 @@
 import 'dart:io';
 
 /// file信息实体
-class FileModelUtil{
+class ZekingFileUtilModel{
   File file;
   String fileName;
   int fileSize;
   String filePath;
   int fileDate;
-  FileModelUtil(
+  ZekingFileUtilModel(
       {
         this.fileDate,
         this.fileName,
