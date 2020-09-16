@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -14,37 +16,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  List<ZekingFileModel> files = [];
+  bool isSearchEnd = false;
 
   @override
   void initState() {
     super.initState();
-//    initPlatformState();
-
-    ZekingFileSelector.getFilesAndroid(null).then((value) {
-      print(value);
-    });
   }
-
-//  // Platform messages are asynchronous, so we initialize in an async method.
-//  Future<void> initPlatformState() async {
-//    String platformVersion;
-//    // Platform messages may fail, so we use a try/catch PlatformException.
-//    try {
-//      platformVersion = await ZekingFileSelector.platformVersion;
-//    } on PlatformException {
-//      platformVersion = 'Failed to get platform version.';
-//    }
-//
-//    // If the widget was removed from the tree while the asynchronous platform
-//    // message was in flight, we want to discard the reply rather than calling
-//    // setState to update our non-existent appearance.
-//    if (!mounted) return;
-//
-//    setState(() {
-//      _platformVersion = platformVersion;
-//    });
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +31,48 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Container(
+          child: Column(
+            children: [
+              RaisedButton(
+                onPressed: () {
+                  ZekingFileSelector.getFilesAndroid(null).listen((event) {
+                    ZekingFileSelectorResultModel model =
+                        ZekingFileSelectorResultModel.fromJson(
+                            jsonDecode(event));
+                    setState(() {
+                      this.isSearchEnd = model.isSearchEnd;
+                      this.files = model.files;
+                    });
+                  });
+                },
+                child: Text('开始获取'),
+              ),
+              Text(!isSearchEnd
+                  ? '正在搜索，已经搜多到${files?.length}个文件'
+                  : '搜索完成${files?.length}个文件'),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.only(top: 0),
+                    shrinkWrap:true,
+                  itemBuilder: (context, index) {
+                    return buildItem(index);
+                  },
+                  itemCount:
+                      files == null || files.length == 0 ? 0 : files.length,
+                ),
+              )
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget buildItem(int index) {
+    return Container(
+      height: 45,
+      child: Expanded(child: Text(files[index].fileName)),
     );
   }
 }

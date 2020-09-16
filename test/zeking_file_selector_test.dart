@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await ZekingFileSelector.getFilesAndroid(null), '42');
-  });
+//  test('getPlatformVersion', () async {
+//    expect(await ZekingFileSelector.getFilesAndroid(null), '42');
+//  });
 }
