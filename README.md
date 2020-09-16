@@ -9,8 +9,14 @@
 ## 2. 使用：
 
 ```
-List<ZekingFileUtilModel> fileModelUtil =
-        await ZekingFileSelector.getFilesAndroid([".pdf",'.doc','.docx']);
+
+ZekingFileSelector.getFilesAndroid([".pdf",'.doc','.docx']).listen((event) {
+
+   ZekingFileSelectorResultModel model =
+           ZekingFileSelectorResultModel.fromJson(
+                jsonDecode(event));
+
+});
 ```
 
 如果 getFilesAndroid 的参数传null，默认是 ".pdf", ".docx", ".doc",".xlsx"

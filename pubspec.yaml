@@ -1,6 +1,6 @@
 name: zeking_file_selector
 description: 根据文件后缀 获取 文件，只支持Android。如果要支持IOS请使用插件 file_picker
-version: 0.0.2
+version: 0.0.4
 homepage: https://github.com/LZQL/zeking_file_selector
 
 environment:
